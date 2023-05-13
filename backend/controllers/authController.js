@@ -144,3 +144,58 @@ exports.updatePassword = CathAsyncErrors(async (req, res, next) => {
     sendToken(user, 200, res)
 
 })
+//update profile => /api/v1/me/update
+exports.updateProfile = CathAsyncErrors(
+    async (req,res,next)=>{
+        const newUserData = {
+            name: req.body.name,
+            email: req.body.email
+        }
+        const user = await User.findByIdAndUpdate(req.user.id,newUserData,{
+            new:true,
+            runValidators: true,
+            useFindAndModify: false
+        })
+        sendToken(user,200,res)
+    }
+)
+//admin route
+exports.getAllUser = CathAsyncErrors(
+    async (req,res,next)=>{
+        const users = await User.find();
+
+        res.status(200).json({
+            success: true,
+            users
+        })
+    }
+)
+
+//admin get user detail api/v1/admin/user/detail
+exports.getUserDetail = CathAsyncErrors(
+    async (req,res,next)=>{
+        const user = await User.findById(req.params.id);
+
+        if(!user){
+            return next(new ErrorHandler("User is not Exit",))
+        }
+        res.status(200).json({
+            success:true,
+            user
+        })
+    }
+)
+//admin delete a user => api/v1/admin/delete/user/:id
+exports.deleteUser = CathAsyncErrors(
+    async (req,res,next)=>{
+        const user = await User.findById(req.params.id);
+        if(!user){
+            return next(new ErrorHandler("user Not Found", 404))
+        }
+        await user.deleteOne();
+        res.status(200).json({
+            success: true,
+            message: "user is deleted"
+        })
+    }
+)
