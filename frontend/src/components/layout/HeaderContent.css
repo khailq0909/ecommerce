@@ -1,0 +1,43 @@
+.headercontent{
+    height: 4.5rem;
+    background: #DC241E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    padding: 0.7rem 3rem 0.3rem 3rem;
+}
+
+.headercontent_left img{
+    width: 10rem;
+    cursor: pointer;
+    
+}
+.headercontent_right{
+    display: flex;
+    align-items: center;
+}
+.headercontent_right .search input{
+    width: 58rem;
+    height: 3rem;
+    font-size: 1.4rem;
+    outline: none;
+    border-radius: 0.4rem;
+    border: none;
+    margin-bottom: 0.4rem;
+    padding: 1rem;
+    position: relative;
+}
+.headercontent_right .search img{
+    width: 2rem;
+    position: absolute;
+    right: 370px;
+    top: 43px;
+    cursor: pointer;
+}
+.cart img{
+    width: 4rem;
+    padding: 0 0 0 1.5rem;
+    cursor: pointer;
+}
